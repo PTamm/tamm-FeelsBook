@@ -4,4 +4,12 @@
     <string name="button_add_feel">Add New Feeling</string>
     <string name="button_del_feel">Delete Feeling</string>
     <string name="button_view_count">View Feeling Count</string>
+    <string name="button_add_love">Love</string>
+    <string name="button_add_joy">Joy</string>
+    <string name="button_add_surprise">Surprise</string>
+    <string name="button_add_anger">Anger</string>
+    <string name="button_add_sadness">Sadness</string>
+    <string name="button_add_fear">Fear</string>
+    <string name="optional_feel_text">Additional Comments?</string>
+    <string name="button_add">Add</string>
 </resources>
