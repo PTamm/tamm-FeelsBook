@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">tamm-FeelsBook</string>
+    <string name="button">Button</string>
+    <string name="button_add_feel">Add New Feeling</string>
+    <string name="button_del_feel">Delete Feeling</string>
+    <string name="button_view_count">View Feeling Count</string>
+</resources>
