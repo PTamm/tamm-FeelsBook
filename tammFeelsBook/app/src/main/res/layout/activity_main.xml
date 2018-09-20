@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/feelsList" />
 
     <Button
-        android:id="@+id/deleteFeeling"
+        android:id="@+id/delFeel"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
@@ -44,6 +44,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:onClick="deleteFeeling"
         android:text="@string/button_del_feel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,5 +62,5 @@
         android:text="@string/button_view_count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteFeeling" />
+        app:layout_constraintTop_toBottomOf="@+id/delFeel" />
 </android.support.constraint.ConstraintLayout>

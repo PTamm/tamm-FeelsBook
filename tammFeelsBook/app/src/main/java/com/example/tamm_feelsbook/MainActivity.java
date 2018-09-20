@@ -19,4 +19,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, add_feeling.class);
         startActivity(intent);
     }
+
+    public void deleteFeeling(View view){
+        Toast.makeText(this, "Delete a Feeling", Toast.LENGTH_SHORT).show();
+        Intent delIntent = new Intent(MainActivity.this, deleteFeeling.class);
+        startActivity(delIntent);
+    }
 }

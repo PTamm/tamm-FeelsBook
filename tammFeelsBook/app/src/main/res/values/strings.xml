@@ -12,4 +12,5 @@
     <string name="button_add_fear">Fear</string>
     <string name="optional_feel_text">Additional Comments?</string>
     <string name="button_add">Add</string>
+    <string name="button_delete">Delete Feeling</string>
 </resources>
