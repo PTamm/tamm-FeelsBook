@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".add_feeling" />
-        <activity android:name=".deleteFeeling"></activity>
+        <activity android:name=".deleteFeeling" />
+        <activity android:name=".countFeelings"></activity>
     </application>
 
 </manifest>

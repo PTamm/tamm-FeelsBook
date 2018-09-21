@@ -25,4 +25,10 @@ public class MainActivity extends AppCompatActivity {
         Intent delIntent = new Intent(MainActivity.this, deleteFeeling.class);
         startActivity(delIntent);
     }
+
+    public void viewCount(View view) {
+        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
+        Intent countIntent = new Intent(MainActivity.this, countFeelings.class);
+        startActivity(countIntent);
+    }
 }
