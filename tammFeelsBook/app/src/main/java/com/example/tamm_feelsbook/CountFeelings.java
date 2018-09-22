@@ -3,7 +3,7 @@ package com.example.tamm_feelsbook;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class countFeelings extends AppCompatActivity {
+public class CountFeelings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

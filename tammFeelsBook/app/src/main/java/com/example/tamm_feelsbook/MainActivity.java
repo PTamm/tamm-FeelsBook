@@ -16,19 +16,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void addFeeling(View view){
         Toast.makeText(this, "Add a Feeling", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, add_feeling.class);
+        Intent intent = new Intent(MainActivity.this, AddFeeling.class);
         startActivity(intent);
     }
 
     public void deleteFeeling(View view){
         Toast.makeText(this, "Delete a Feeling", Toast.LENGTH_SHORT).show();
-        Intent delIntent = new Intent(MainActivity.this, deleteFeeling.class);
+        Intent delIntent = new Intent(MainActivity.this, DeleteFeeling.class);
         startActivity(delIntent);
     }
 
     public void viewCount(View view) {
         Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
-        Intent countIntent = new Intent(MainActivity.this, countFeelings.class);
+        Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
         startActivity(countIntent);
     }
 }

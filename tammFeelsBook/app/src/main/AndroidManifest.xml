@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".add_feeling" />
-        <activity android:name=".deleteFeeling" />
-        <activity android:name=".countFeelings"></activity>
+        <activity android:name=".AddFeeling" />
+        <activity android:name=".DeleteFeeling" />
+        <activity android:name=".CountFeelings"></activity>
     </application>
 
 </manifest>
