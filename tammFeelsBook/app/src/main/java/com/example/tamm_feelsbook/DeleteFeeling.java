@@ -11,5 +11,5 @@ public class DeleteFeeling extends AppCompatActivity {
         setContentView(R.layout.activity_delete_feeling);
     }
 
-    
+
 }
