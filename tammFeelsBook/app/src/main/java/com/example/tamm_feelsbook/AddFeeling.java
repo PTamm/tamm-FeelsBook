@@ -20,36 +20,44 @@ public class AddFeeling extends AppCompatActivity {
      */
     public void buttonAddClicked(View view){
 
+        FeelsListController flc = new FeelsListController();
+
         switch(view.getId()) {
             case R.id.buttonLove:
                 Toast.makeText(this, "Add Love feeling", Toast.LENGTH_SHORT).show();
                 String loveFeeling = "Love";
                 Feeling love = new Feeling(loveFeeling);
+                flc.addFeeling(love);
                 break;
             case R.id.buttonJoy:
                 Toast.makeText(this, "Add Joy feeling", Toast.LENGTH_SHORT).show();
                 String joyFeeling = "Joy";
                 Feeling joy = new Feeling(joyFeeling);
+                flc.addFeeling(joy);
                 break;
             case R.id.buttonFear:
                 Toast.makeText(this, "Add Fear feeling", Toast.LENGTH_SHORT).show();
                 String fearFeeling = "Fear";
                 Feeling fear = new Feeling(fearFeeling);
+                flc.addFeeling(fear);
                 break;
             case R.id.buttonAnger:
                 Toast.makeText(this, "Add Anger feeling", Toast.LENGTH_SHORT).show();
                 String angerFeeling = "Anger";
                 Feeling anger = new Feeling(angerFeeling);
+                flc.addFeeling(anger);
                 break;
             case R.id.buttonSurprise:
                 Toast.makeText(this, "Add Surprise feeling", Toast.LENGTH_SHORT).show();
                 String surpriseFeeling = "Surprise";
                 Feeling surprise = new Feeling(surpriseFeeling);
+                flc.addFeeling(surprise);
                 break;
             case R.id.buttonSadness:
                 Toast.makeText(this, "Add Sadness feeling", Toast.LENGTH_SHORT).show();
                 String sadnessFeeling = "Sadness";
                 Feeling sadness = new Feeling(sadnessFeeling);
+                flc.addFeeling(sadness);
                 break;
         }
     }
