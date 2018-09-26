@@ -15,6 +15,10 @@ public class Feeling {
         return this.feeling;
     }
 
+    public String toString(){
+        return getFeel();
+    }
+
     public Date getDate(){
         return this.date;
     }
