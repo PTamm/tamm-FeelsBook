@@ -25,4 +25,6 @@ public class FeelingList {
     public void clearList(){
         feelingList.clear();
     }
+
+
 }

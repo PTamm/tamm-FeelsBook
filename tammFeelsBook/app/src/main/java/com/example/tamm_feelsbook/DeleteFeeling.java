@@ -29,7 +29,10 @@ public class DeleteFeeling extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(DeleteFeeling.this, feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DeleteFeeling.this, "You are deleting "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
+                Feeling feel = feelingList.get(position);
+                FeelsListController.getFeelingList().deleteFeeling(feel);
+                //updateList();
                 return false;
             }
         });
@@ -45,5 +48,20 @@ public class DeleteFeeling extends AppCompatActivity {
         ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
         listView.setAdapter(feelsAdapter);
     }
+
+    public void clearList(View view){
+        Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
+        FeelsListController flc = new FeelsListController();
+        flc.clearList();
+    }
+
+    /*protected void updateList(){
+        setContentView(R.layout.activity_delete_feeling);
+        ListView listView = (ListView) findViewById(R.id.delFeelsList);
+        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
+        ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
+        listView.setAdapter(feelsAdapter);
+    }*/
 
 }
