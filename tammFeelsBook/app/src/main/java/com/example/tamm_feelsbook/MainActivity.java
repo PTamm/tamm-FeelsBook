@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onRestart() {
+        super.onRestart();
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
         Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings

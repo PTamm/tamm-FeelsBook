@@ -14,4 +14,12 @@ public class FeelsListController {
     public void addFeeling(Feeling feel) {
         getFeelingList().addFeeling(feel);
     }
+
+    public void delFeeling(Feeling feel){
+        getFeelingList().deleteFeeling(feel);
+    }
+
+    public void clearList(){
+        getFeelingList().clearList();
+    }
 }

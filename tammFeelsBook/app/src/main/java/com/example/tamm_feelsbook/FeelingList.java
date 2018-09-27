@@ -21,4 +21,8 @@ public class FeelingList {
     public void deleteFeeling(Feeling feel){
         feelingList.remove(feel);
     }
+
+    public void clearList(){
+        feelingList.clear();
+    }
 }
