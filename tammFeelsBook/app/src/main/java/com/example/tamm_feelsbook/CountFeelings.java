@@ -103,6 +103,8 @@ public class CountFeelings extends AppCompatActivity {
 
         // TODO: Consider try block later ...
 
+        /* How to set TextView: Abram Hindle, https://www.youtube.com/watch?v=uLnoI7mbuEo&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O&index=5, 2018-09-27*/
+
         TextView loveView = (TextView) findViewById(R.id.dispLoveCount);
         loveView.setText("Love Count: "+loveCount);
 
