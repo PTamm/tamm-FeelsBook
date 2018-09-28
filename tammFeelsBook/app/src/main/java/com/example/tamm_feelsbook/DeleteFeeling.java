@@ -20,8 +20,19 @@ public class DeleteFeeling extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.delFeelsList);
         Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
         final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
+        final ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
         listView.setAdapter(feelsAdapter);
+
+        // Abram Hindle, https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O, 2018-09-27
+        FeelsListController.getFeelingList().addFeelsListener(new FeelsListener() {
+            @Override
+            public void updateListener() {
+                feelingList.clear();
+                Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
+                feelingList.addAll(feels);
+                feelsAdapter.notifyDataSetChanged();
+            }
+        });
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
@@ -32,7 +43,6 @@ public class DeleteFeeling extends AppCompatActivity {
                 Toast.makeText(DeleteFeeling.this, "You are deleting "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
                 Feeling feel = feelingList.get(position);
                 FeelsListController.getFeelingList().deleteFeeling(feel);
-                //updateList();
                 return false;
             }
         });
@@ -53,6 +63,7 @@ public class DeleteFeeling extends AppCompatActivity {
         Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
         FeelsListController flc = new FeelsListController();
         flc.clearList();
+        FeelsListController.getFeelingList().notifyListeners();
     }
 
     /*protected void updateList(){

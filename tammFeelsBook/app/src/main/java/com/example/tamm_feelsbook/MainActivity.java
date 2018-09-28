@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
         Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
+        final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
         ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
         listView.setAdapter(feelsAdapter);
     }
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteFeeling(View view){
-        Toast.makeText(this, "Delete a Feeling", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Delete a Feeling: Press and hold to delete", Toast.LENGTH_LONG).show();
         Intent delIntent = new Intent(MainActivity.this, DeleteFeeling.class);
         startActivity(delIntent);
     }
