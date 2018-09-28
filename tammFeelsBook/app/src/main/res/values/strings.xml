@@ -13,4 +13,10 @@
     <string name="optional_feel_text">Additional Comments?</string>
     <string name="button_add">Add</string>
     <string name="button_clear">Clear Feeling List</string>
+    <string name="love_count_text">Love count ...</string>
+    <string name="joy_count_text">Joy count ...</string>
+    <string name="surprise_count_text">Surprise count ...</string>
+    <string name="anger_count_text">Anger count ...</string>
+    <string name="sadness_count_text">Sadness count ...</string>
+    <string name="fear_count_text">Fear count ...</string>
 </resources>
