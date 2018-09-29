@@ -48,17 +48,6 @@ public class DeleteFeeling extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.delFeelsList);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
-        listView.setAdapter(feelsAdapter);
-    }
-
     public void clearList(View view){
         Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
         FeelsListController flc = new FeelsListController();

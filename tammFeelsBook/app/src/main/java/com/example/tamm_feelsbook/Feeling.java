@@ -6,7 +6,7 @@ public class Feeling {
     private String feeling;
     private Date date;
 
-    Feeling (String feel){
+    Feeling (String feel) {
         this.feeling = feel;
         this.date = new Date();
     }
