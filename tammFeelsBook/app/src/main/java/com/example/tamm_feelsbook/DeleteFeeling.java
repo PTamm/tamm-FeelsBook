@@ -8,10 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class DeleteFeeling extends AppCompatActivity {
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private final ArrayList<String> stringFeelingList = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +25,11 @@ public class DeleteFeeling extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.delFeelsList);
         Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
         final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        final ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
+        //final ArrayList<String> stringFeelingList = new ArrayList<String>();
+        for (Feeling feel : feels){
+            stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+        }
+        final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
 
         // Abram Hindle, https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O, 2018-09-27
@@ -28,8 +37,12 @@ public class DeleteFeeling extends AppCompatActivity {
             @Override
             public void updateListener() {
                 feelingList.clear();
+                stringFeelingList.clear();
                 Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
                 feelingList.addAll(feels);
+                for (Feeling feel : feels){
+                    stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+                }
                 feelsAdapter.notifyDataSetChanged();
             }
         });
@@ -52,6 +65,7 @@ public class DeleteFeeling extends AppCompatActivity {
         Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
         FeelsListController flc = new FeelsListController();
         flc.clearList();
+        stringFeelingList.clear();
         FeelsListController.getFeelingList().notifyListeners();
     }
 
