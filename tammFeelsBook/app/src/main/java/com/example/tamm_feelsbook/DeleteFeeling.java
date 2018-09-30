@@ -69,13 +69,4 @@ public class DeleteFeeling extends AppCompatActivity {
         FeelsListController.getFeelingList().notifyListeners();
     }
 
-    /*protected void updateList(){
-        setContentView(R.layout.activity_delete_feeling);
-        ListView listView = (ListView) findViewById(R.id.delFeelsList);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
-        listView.setAdapter(feelsAdapter);
-    }*/
-
 }

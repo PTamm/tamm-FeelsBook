@@ -20,48 +20,101 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addFeelsEntry"
+        android:id="@+id/additionalOptions"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="39dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="addFeeling"
-        android:text="@string/button_add_feel"
+        android:layout_marginTop="8dp"
+        android:onClick="additionalOptions"
+        android:text="@string/button_additional_options"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSadness" />
+
+    <Button
+        android:id="@+id/buttonLove"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="buttonAddClicked"
+        android:text="@string/button_add_love"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAnger"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feelsList" />
 
     <Button
-        android:id="@+id/delFeel"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/buttonJoy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="deleteFeeling"
-        android:text="@string/button_del_feel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addFeelsEntry" />
+        android:onClick="buttonAddClicked"
+        android:text="@string/button_add_joy"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSurprise"
+        app:layout_constraintStart_toEndOf="@+id/buttonLove"
+        app:layout_constraintTop_toBottomOf="@+id/feelsList" />
 
     <Button
-        android:id="@+id/viewFeelCount"
+        android:id="@+id/buttonSurprise"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="buttonAddClicked"
+        android:text="@string/button_add_surprise"
+        app:layout_constraintBottom_toTopOf="@+id/buttonFear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonJoy" />
+
+    <Button
+        android:id="@+id/buttonAnger"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:onClick="viewCount"
-        android:text="@string/button_view_count"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="buttonAddClicked"
+        android:text="@string/button_add_anger"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delFeel" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonJoy" />
+
+    <Button
+        android:id="@+id/buttonSadness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="buttonAddClicked"
+        android:text="@string/button_add_sadness"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFear"
+        app:layout_constraintStart_toEndOf="@+id/buttonAnger"
+        app:layout_constraintTop_toBottomOf="@+id/buttonJoy" />
+
+    <Button
+        android:id="@+id/buttonFear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="buttonAddClicked"
+        android:text="@string/button_add_fear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonJoy" />
+
 </android.support.constraint.ConstraintLayout>

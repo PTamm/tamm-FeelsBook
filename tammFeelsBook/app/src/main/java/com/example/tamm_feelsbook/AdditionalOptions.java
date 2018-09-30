@@ -1,17 +1,17 @@
 package com.example.tamm_feelsbook;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
-public class AddFeeling extends AppCompatActivity {
+public class AdditionalOptions extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_feeling);
+        setContentView(R.layout.activity_additional_options);
     }
 
     /*  Idea to use one function to handle all button clicks came from android developer guide.
@@ -60,5 +60,23 @@ public class AddFeeling extends AppCompatActivity {
                 flc.addFeeling(sadness);
                 break;
         }
+    }
+
+    public void delFeel(View view) {
+        Toast.makeText(this, "Delete Feeling: Press and hold", Toast.LENGTH_LONG).show();
+        Intent deleteIntent = new Intent(AdditionalOptions.this, DeleteFeeling.class);
+        startActivity(deleteIntent);
+    }
+
+    public void viewCount(View view) {
+        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
+        Intent countIntent = new Intent(AdditionalOptions.this, CountFeelings.class);
+        startActivity(countIntent);
+    }
+
+    public void modifyFeeling(View view) {
+        Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
+        Intent modifyIntent = new Intent(AdditionalOptions.this, ModifyFeeling.class);
+        startActivity(modifyIntent);
     }
 }

@@ -18,13 +18,12 @@ public class FeelingList {
 
     public void addFeeling(Feeling feel){
         feelingList.add(feel);
+        notifyListeners();
     }
 
     public void deleteFeeling(Feeling feel){
         feelingList.remove(feel);
-        notifyListeners();  // For now, I only want to implement this when I delete a feeling;
-                            // otherwise, the list views will be updated automatically when
-                            // the user switches between activities.
+        notifyListeners();
     }
 
     public void clearList(){

@@ -4,13 +4,13 @@
     <string name="button_add_feel">Add New Feeling</string>
     <string name="button_del_feel">Delete Feeling</string>
     <string name="button_view_count">View Feeling Count</string>
-    <string name="button_add_love">Add Love Feeling</string>
-    <string name="button_add_joy">Add Joy Feeling</string>
-    <string name="button_add_surprise">Add Surprise Feeling</string>
-    <string name="button_add_anger">Add Anger Feeling</string>
-    <string name="button_add_sadness">Add Sadness Feeling</string>
-    <string name="button_add_fear">Add Fear Feeling</string>
-    <string name="optional_feel_text">Additional Comments?</string>
+    <string name="button_add_love">Love</string>
+    <string name="button_add_joy">Joy</string>
+    <string name="button_add_surprise">Surprise</string>
+    <string name="button_add_anger">Anger</string>
+    <string name="button_add_sadness">Sadness</string>
+    <string name="button_add_fear">Fear</string>
+    <string name="optional_feel_text">Type here, then press+hold feeling to add.</string>
     <string name="button_add">Add</string>
     <string name="button_clear">Clear Feeling List</string>
     <string name="love_count_text">Love count ...</string>
@@ -19,4 +19,6 @@
     <string name="anger_count_text">Anger count ...</string>
     <string name="sadness_count_text">Sadness count ...</string>
     <string name="fear_count_text">Fear count ...</string>
+    <string name="button_additional_options">Additional Options</string>
+    <string name="button_edit_feeling">Modify Feeling</string>
 </resources>

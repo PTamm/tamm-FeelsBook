@@ -25,6 +25,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.google.code.gson:gson:2.8.2' //This is from the 2018-09-25 Lab session for CMPUT 301 at the U of A, TA Abdul Ali Bangash
+    implementation 'com.google.code.gson:gson:2.8.2'
+    //This is from the 2018-09-25 Lab session for CMPUT 301 at the U of A, TA Abdul Ali Bangash
 }
-

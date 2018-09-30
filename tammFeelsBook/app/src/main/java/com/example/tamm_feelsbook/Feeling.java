@@ -5,10 +5,12 @@ import java.util.Date;
 public class Feeling {
     private String feeling;
     private Date date;
+    private String comment;
 
     Feeling (String feel) {
         this.feeling = feel;
         this.date = new Date();
+        this.comment = null;
     }
 
     public String getFeel(){
@@ -29,5 +31,13 @@ public class Feeling {
 
     public void setDate(Date newDate){
         this.date = newDate;
+    }
+
+    public void setComment(String text){
+        this.comment = text;
+    }
+
+    public String getComment(){
+        return this.comment;
     }
 }
