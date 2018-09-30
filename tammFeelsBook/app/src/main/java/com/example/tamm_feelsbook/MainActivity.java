@@ -79,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
         for (Feeling feel : feels){
-            stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+            if (feel.getComment() == null) {
+                stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+            } else {
+                stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
+            }
         }
         final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
@@ -93,7 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
                 feelingList.addAll(feels);
                 for (Feeling feel : feels){
-                    stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+                    if (feel.getComment() == null) {
+                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+                    } else {
+                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
+                    }
                 }
                 feelsAdapter.notifyDataSetChanged();
             }
@@ -120,7 +128,11 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
         for (Feeling feel : feels){
-            stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+            if (feel.getComment() == null) {
+                stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+            } else {
+                stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
+            }
         }
         final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
@@ -134,7 +146,11 @@ public class MainActivity extends AppCompatActivity {
                 Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
                 feelingList.addAll(feels);
                 for (Feeling feel : feels){
-                    stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+                    if (feel.getComment() == null) {
+                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+                    } else {
+                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
+                    }
                 }
                 feelsAdapter.notifyDataSetChanged();
             }

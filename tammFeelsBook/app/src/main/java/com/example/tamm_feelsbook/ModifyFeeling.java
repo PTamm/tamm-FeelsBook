@@ -48,9 +48,9 @@ public class ModifyFeeling extends AppCompatActivity {
                 feelingList.addAll(feels);
                 for (Feeling feel : feels) {
                     if (feel.getComment() == null) {
-                        stringFeelingList.add(feel.getFeel() + "\n" + sdf.format(feel.getDate()));
+                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
                     } else {
-                        stringFeelingList.add(feel.getFeel() + "\n" + feel.getComment() + "\n" + sdf.format(feel.getDate()));
+                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
                     }
                 }
                 feelsAdapter.notifyDataSetChanged();
