@@ -10,7 +10,7 @@
     <string name="button_add_anger">Anger</string>
     <string name="button_add_sadness">Sadness</string>
     <string name="button_add_fear">Fear</string>
-    <string name="optional_feel_text">Type here, then press+hold feeling to add.</string>
+    <string name="optional_feel_text">Type here, then press+hold feeling to add.\nEnter text for comment, change feeling or \nchange date.</string>
     <string name="button_add">Add</string>
     <string name="button_clear">Clear Feeling List</string>
     <string name="love_count_text">Love count ...</string>
