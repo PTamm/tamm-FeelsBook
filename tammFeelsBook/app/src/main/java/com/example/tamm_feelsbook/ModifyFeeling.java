@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -103,8 +104,18 @@ public class ModifyFeeling extends AppCompatActivity {
                                     "Successfully changed "+oldFeel+" to "+newFeel+"\nRefresh to see change.",
                                     Toast.LENGTH_LONG).show();
                         } else if (which == 2){ //Change Date ...
+                            Feeling feel = feelingList.get(pos);
+                            //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
+                            EditText editText = (EditText) findViewById(R.id.modifyComment);
+                            String newDate = editText.getText().toString();
+                            //handling exceptions, lonelyTwitter code, Cody Rosevear, 2018-09-30
+                            try{
+                                feel.setDate(newDate);
+                            } catch (ParseException prsEx){
+                                Toast.makeText(ModifyFeeling.this, "Parse Exception encountered.",Toast.LENGTH_SHORT).show();
+                            }
                             Toast.makeText(ModifyFeeling.this,
-                                    "Changing Date.",
+                                    "Changing date to "+newDate+"\nRefresh to see change.",
                                     Toast.LENGTH_LONG).show();
                         } else { //Last item clicked; cancel ...
                             Toast.makeText(ModifyFeeling.this,

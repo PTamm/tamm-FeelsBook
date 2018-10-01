@@ -1,11 +1,15 @@
 package com.example.tamm_feelsbook;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Feeling {
     private String feeling;
     private Date date;
     private String comment;
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     Feeling (String feel) {
         this.feeling = feel;
@@ -29,8 +33,8 @@ public class Feeling {
         this.feeling = newFeel;
     }
 
-    public void setDate(Date newDate){
-        this.date = newDate;
+    public void setDate(String newDateString) throws ParseException {
+        this.date = sdf.parse(newDateString);
     }
 
     public void setComment(String text){
