@@ -93,6 +93,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully added '"+comment+"' to "+feel.getFeel()+"\nRefresh to see change.",
                                     Toast.LENGTH_LONG).show();
+                            FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 1){ //Change Feeling ...
                             Feeling feel = feelingList.get(pos);
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
@@ -103,6 +104,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully changed "+oldFeel+" to "+newFeel+"\nRefresh to see change.",
                                     Toast.LENGTH_LONG).show();
+                            FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 2){ //Change Date ...
                             Feeling feel = feelingList.get(pos);
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
@@ -117,6 +119,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Changing date to "+newDate+"\nRefresh to see change.",
                                     Toast.LENGTH_LONG).show();
+                            FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 3) { //Delete this feeling ...
                             Toast.makeText(ModifyFeeling.this, "You are deleting "+feelingList.get(pos).toString(), Toast.LENGTH_SHORT).show();
                             Feeling feel = feelingList.get(pos);

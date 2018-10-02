@@ -2,12 +2,14 @@ package com.example.tamm_feelsbook;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Feeling {
     private String feeling;
     private Date date;
     private String comment;
+
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
