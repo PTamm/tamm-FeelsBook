@@ -91,7 +91,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             String comment = editText.getText().toString();
                             feel.setComment(comment);
                             Toast.makeText(ModifyFeeling.this,
-                                    "Successfully added '"+comment+"' to "+feel.getFeel()+"\nRefresh to see change.",
+                                    "Successfully added '"+comment+"' to "+feel.getFeel(),
                                     Toast.LENGTH_LONG).show();
                             FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 1){ //Change Feeling ...
@@ -102,7 +102,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             String oldFeel = feel.getFeel();
                             feel.setFeel(newFeel);
                             Toast.makeText(ModifyFeeling.this,
-                                    "Successfully changed "+oldFeel+" to "+newFeel+"\nRefresh to see change.",
+                                    "Successfully changed "+oldFeel+" to "+newFeel,
                                     Toast.LENGTH_LONG).show();
                             FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 2){ //Change Date ...
@@ -117,7 +117,7 @@ public class ModifyFeeling extends AppCompatActivity {
                                 Toast.makeText(ModifyFeeling.this, "Parse Exception encountered.",Toast.LENGTH_SHORT).show();
                             }
                             Toast.makeText(ModifyFeeling.this,
-                                    "Changing date to "+newDate+"\nRefresh to see change.",
+                                    "Changing date to "+newDate,
                                     Toast.LENGTH_LONG).show();
                             FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 3) { //Delete this feeling ...
