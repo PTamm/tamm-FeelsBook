@@ -31,6 +31,7 @@ tamm-FeelsBook: Allows users to keep a log of their feelings; gives type and dat
 */
 package com.example.tamm_feelsbook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,7 +43,17 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     * Date: 2018-09-28*/
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final String FILENAME = "savedFeels.sav";
+    ArrayList<Feeling> feelingList;
 
 
     @Override
@@ -76,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
         final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
+        feelingList = new ArrayList<Feeling>(feels);
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
         for (Feeling feel : feels){
             if (feel.getComment() == null) {
@@ -125,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
         final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
+        feelingList = new ArrayList<Feeling>(feels);
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
         for (Feeling feel : feels){
             if (feel.getComment() == null) {
@@ -241,5 +254,40 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
         Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
         startActivity(countIntent);
+    }
+
+    //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell, Ali Abdi Bangash, 2018-10-02
+
+    private void loadFromFile(){
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader input = new BufferedReader(new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Feeling>>(){}.getType();
+
+            feelingList = gson.fromJson(input, listType);
+
+        } catch (FileNotFoundException fileNotFound){
+            feelingList = new ArrayList<Feeling>();
+        }
+    }
+
+    private void saveToFile(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+            BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(feelingList,output);
+            output.flush();
+            fos.close();
+
+        } catch (FileNotFoundException fileNotFound){
+            fileNotFound.printStackTrace();
+        } catch (IOException ioError){
+            ioError.printStackTrace();
+        }
     }
 }
