@@ -79,7 +79,7 @@ public class ModifyFeeling extends AppCompatActivity {
                 modifyAlert.setTitle("Modifying "+feelingList.get(position)+"?");
                 modifyAlert.setCancelable(true);
 
-                final CharSequence[] choices = {"Add Comment","Change Feeling","Change Date","Cancel"};
+                final CharSequence[] choices = {"Add Comment","Change Feeling","Change Date","Delete This Feeling","Cancel"};
 
                 modifyAlert.setItems(choices, new DialogInterface.OnClickListener() {
                     @Override
@@ -117,6 +117,10 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Changing date to "+newDate+"\nRefresh to see change.",
                                     Toast.LENGTH_LONG).show();
+                        } else if (which == 3) { //Delete this feeling ...
+                            Toast.makeText(ModifyFeeling.this, "You are deleting "+feelingList.get(pos).toString(), Toast.LENGTH_SHORT).show();
+                            Feeling feel = feelingList.get(pos);
+                            FeelsListController.getFeelingList().deleteFeeling(feel);
                         } else { //Last item clicked; cancel ...
                             Toast.makeText(ModifyFeeling.this,
                                     "Cancel",
@@ -199,5 +203,13 @@ public class ModifyFeeling extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void clearList(View view){
+        Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
+        FeelsListController flc = new FeelsListController();
+        flc.clearList();
+        stringFeelingList.clear();
+        FeelsListController.getFeelingList().notifyListeners();
     }
 }

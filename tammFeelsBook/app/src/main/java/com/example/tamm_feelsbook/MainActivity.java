@@ -231,9 +231,15 @@ public class MainActivity extends AppCompatActivity {
     }
 */
 
-    public void additionalOptions(View view) {
-        Toast.makeText(this, "Additional Options", Toast.LENGTH_SHORT).show();
-        Intent additionalIntent = new Intent(MainActivity.this, AdditionalOptions.class);
+    public void modifyFeeling(View view) {
+        Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
+        Intent additionalIntent = new Intent(MainActivity.this, ModifyFeeling.class);
         startActivity(additionalIntent);
+    }
+
+    public void viewCount(View view) {
+        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
+        Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
+        startActivity(countIntent);
     }
 }
