@@ -186,63 +186,55 @@ public class MainActivity extends AppCompatActivity {
     Site: https://developer.android.com/guide/topics/ui/controls/radiobutton#java
     Date: 2018-09-22
  */
-    public void buttonAddClicked(View view){
+    public void buttonAddClicked(View view) {
 
         FeelsListController flc = new FeelsListController();
 
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.buttonLove:
                 Toast.makeText(this, "Add Love feeling", Toast.LENGTH_SHORT).show();
                 String loveFeeling = "Love";
                 Feeling love = new Feeling(loveFeeling);
                 flc.addFeeling(love);
+                saveToFile();
                 break;
             case R.id.buttonJoy:
                 Toast.makeText(this, "Add Joy feeling", Toast.LENGTH_SHORT).show();
                 String joyFeeling = "Joy";
                 Feeling joy = new Feeling(joyFeeling);
                 flc.addFeeling(joy);
+                saveToFile();
                 break;
             case R.id.buttonFear:
                 Toast.makeText(this, "Add Fear feeling", Toast.LENGTH_SHORT).show();
                 String fearFeeling = "Fear";
                 Feeling fear = new Feeling(fearFeeling);
                 flc.addFeeling(fear);
+                saveToFile();
                 break;
             case R.id.buttonAnger:
                 Toast.makeText(this, "Add Anger feeling", Toast.LENGTH_SHORT).show();
                 String angerFeeling = "Anger";
                 Feeling anger = new Feeling(angerFeeling);
                 flc.addFeeling(anger);
+                saveToFile();
                 break;
             case R.id.buttonSurprise:
                 Toast.makeText(this, "Add Surprise feeling", Toast.LENGTH_SHORT).show();
                 String surpriseFeeling = "Surprise";
                 Feeling surprise = new Feeling(surpriseFeeling);
                 flc.addFeeling(surprise);
+                saveToFile();
                 break;
             case R.id.buttonSadness:
                 Toast.makeText(this, "Add Sadness feeling", Toast.LENGTH_SHORT).show();
                 String sadnessFeeling = "Sadness";
                 Feeling sadness = new Feeling(sadnessFeeling);
                 flc.addFeeling(sadness);
+                saveToFile();
                 break;
         }
     }
-
-
-
-/*    @Override
-    protected void onRestart() {
-        super.onRestart();
-        setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.feelsList);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        ArrayAdapter<Feeling> feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
-        listView.setAdapter(feelsAdapter);
-    }
-*/
 
     public void modifyFeeling(View view) {
         Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
@@ -256,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(countIntent);
     }
 
-    //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell, Ali Abdi Bangash, 2018-10-02
+    //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
 
     private void loadFromFile(){
         try {
