@@ -88,10 +88,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
-        final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        feelingList = new ArrayList<Feeling>(feels);
+        loadFromFile();
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
-        for (Feeling feel : feels){
+        for (Feeling feel : feelingList){
             if (feel.getComment() == null) {
                 stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
             } else {
@@ -101,24 +100,6 @@ public class MainActivity extends AppCompatActivity {
         final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
 
-        // Abram Hindle, https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O, 2018-09-27
-        FeelsListController.getFeelingList().addFeelsListener(new FeelsListener() {
-            @Override
-            public void updateListener() {
-                feelingList.clear();
-                stringFeelingList.clear();
-                Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
-                feelingList.addAll(feels);
-                for (Feeling feel : feels){
-                    if (feel.getComment() == null) {
-                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
-                    } else {
-                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
-                    }
-                }
-                feelsAdapter.notifyDataSetChanged();
-            }
-        });
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
@@ -137,10 +118,9 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
-        final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        feelingList = new ArrayList<Feeling>(feels);
+        loadFromFile();
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
-        for (Feeling feel : feels){
+        for (Feeling feel : feelingList){
             if (feel.getComment() == null) {
                 stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
             } else {
@@ -150,24 +130,6 @@ public class MainActivity extends AppCompatActivity {
         final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
 
-        // Abram Hindle, https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O, 2018-09-27
-        FeelsListController.getFeelingList().addFeelsListener(new FeelsListener() {
-            @Override
-            public void updateListener() {
-                feelingList.clear();
-                stringFeelingList.clear();
-                Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
-                feelingList.addAll(feels);
-                for (Feeling feel : feels){
-                    if (feel.getComment() == null) {
-                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
-                    } else {
-                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
-                    }
-                }
-                feelsAdapter.notifyDataSetChanged();
-            }
-        });
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
@@ -188,49 +150,47 @@ public class MainActivity extends AppCompatActivity {
  */
     public void buttonAddClicked(View view) {
 
-        FeelsListController flc = new FeelsListController();
-
-        switch (view.getId()) {
+       switch (view.getId()) {
             case R.id.buttonLove:
                 Toast.makeText(this, "Add Love feeling", Toast.LENGTH_SHORT).show();
                 String loveFeeling = "Love";
                 Feeling love = new Feeling(loveFeeling);
-                flc.addFeeling(love);
+                feelingList.add(love);
                 saveToFile();
                 break;
             case R.id.buttonJoy:
                 Toast.makeText(this, "Add Joy feeling", Toast.LENGTH_SHORT).show();
                 String joyFeeling = "Joy";
                 Feeling joy = new Feeling(joyFeeling);
-                flc.addFeeling(joy);
+                feelingList.add(joy);
                 saveToFile();
                 break;
             case R.id.buttonFear:
                 Toast.makeText(this, "Add Fear feeling", Toast.LENGTH_SHORT).show();
                 String fearFeeling = "Fear";
                 Feeling fear = new Feeling(fearFeeling);
-                flc.addFeeling(fear);
+                feelingList.add(fear);
                 saveToFile();
                 break;
             case R.id.buttonAnger:
                 Toast.makeText(this, "Add Anger feeling", Toast.LENGTH_SHORT).show();
                 String angerFeeling = "Anger";
                 Feeling anger = new Feeling(angerFeeling);
-                flc.addFeeling(anger);
+                feelingList.add(anger);
                 saveToFile();
                 break;
             case R.id.buttonSurprise:
                 Toast.makeText(this, "Add Surprise feeling", Toast.LENGTH_SHORT).show();
                 String surpriseFeeling = "Surprise";
                 Feeling surprise = new Feeling(surpriseFeeling);
-                flc.addFeeling(surprise);
+                feelingList.add(surprise);
                 saveToFile();
                 break;
             case R.id.buttonSadness:
                 Toast.makeText(this, "Add Sadness feeling", Toast.LENGTH_SHORT).show();
                 String sadnessFeeling = "Sadness";
                 Feeling sadness = new Feeling(sadnessFeeling);
-                flc.addFeeling(sadness);
+                feelingList.add(sadness);
                 saveToFile();
                 break;
         }

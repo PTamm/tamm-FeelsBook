@@ -1,13 +1,28 @@
 package com.example.tamm_feelsbook;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class CountFeelings extends AppCompatActivity {
+    private static final String FILENAME = "savedFeels.sav";
+    ArrayList<Feeling> feelingList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +35,7 @@ public class CountFeelings extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_feelings);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-
+        loadFromFile();
         /* string comparison with equals(): https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/513839#513839
         * Users: https://stackoverflow.com/users/2603/aaron-maenpaa (original poster), and others
         *       https://stackoverflow.com/posts/513839/revisions (community wiki)
@@ -77,8 +90,7 @@ public class CountFeelings extends AppCompatActivity {
         super.onRestart();
         setContentView(R.layout.activity_count_feelings);
 
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
+        loadFromFile();
 
         /* string comparison with equals(): https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/513839#513839
          * Users: https://stackoverflow.com/users/2603/aaron-maenpaa (original poster), and others
@@ -122,5 +134,22 @@ public class CountFeelings extends AppCompatActivity {
 
         TextView fearView = (TextView) findViewById(R.id.dispFearCount);
         fearView.setText("Fear Count: "+fearCount);
+    }
+
+    //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
+
+    private void loadFromFile(){
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader input = new BufferedReader(new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Feeling>>(){}.getType();
+
+            feelingList = gson.fromJson(input, listType);
+
+        } catch (FileNotFoundException fileNotFound){
+            feelingList = new ArrayList<Feeling>();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.tamm_feelsbook;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,16 +33,16 @@ public class ModifyFeeling extends AppCompatActivity {
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final ArrayList<String> stringFeelingList = new ArrayList<String>();
+    private static final String FILENAME = "savedFeels.sav";
+    ArrayList<Feeling> feelingList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_feeling);
         ListView listView = (ListView) findViewById(R.id.modifyFeelsList);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        //final ArrayList<String> stringFeelingList = new ArrayList<String>();
-        for (Feeling feel : feels){
+        loadFromFile();
+        for (Feeling feel : feelingList){
             if (feel.getComment()==null){
                 stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
             } else {
@@ -39,24 +52,6 @@ public class ModifyFeeling extends AppCompatActivity {
         final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
 
-        // Abram Hindle, https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O, 2018-09-27
-        FeelsListController.getFeelingList().addFeelsListener(new FeelsListener() {
-            @Override
-            public void updateListener() {
-                feelingList.clear();
-                stringFeelingList.clear();
-                Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
-                feelingList.addAll(feels);
-                for (Feeling feel : feels) {
-                    if (feel.getComment() == null) {
-                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
-                    } else {
-                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
-                    }
-                }
-                feelsAdapter.notifyDataSetChanged();
-            }
-        });
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
@@ -93,7 +88,6 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully added '"+comment+"' to "+feel.getFeel(),
                                     Toast.LENGTH_LONG).show();
-                            FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 1){ //Change Feeling ...
                             Feeling feel = feelingList.get(pos);
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
@@ -104,7 +98,6 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully changed "+oldFeel+" to "+newFeel,
                                     Toast.LENGTH_LONG).show();
-                            FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 2){ //Change Date ...
                             Feeling feel = feelingList.get(pos);
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
@@ -119,11 +112,9 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Changing date to "+newDate,
                                     Toast.LENGTH_LONG).show();
-                            FeelsListController.getFeelingList().notifyListeners();
                         } else if (which == 3) { //Delete this feeling ...
                             Toast.makeText(ModifyFeeling.this, "You are deleting "+feelingList.get(pos).toString(), Toast.LENGTH_SHORT).show();
                             Feeling feel = feelingList.get(pos);
-                            FeelsListController.getFeelingList().deleteFeeling(feel);
                         } else { //Last item clicked; cancel ...
                             Toast.makeText(ModifyFeeling.this,
                                     "Cancel",
@@ -131,6 +122,7 @@ public class ModifyFeeling extends AppCompatActivity {
                         }
                     }
                 });
+                saveToFile();
                 modifyAlert.show();
                 return false;
             }
@@ -142,10 +134,8 @@ public class ModifyFeeling extends AppCompatActivity {
         super.onRestart();
         setContentView(R.layout.activity_edit_feeling);
         ListView listView = (ListView) findViewById(R.id.modifyFeelsList);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
-        final ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
-        //final ArrayList<String> stringFeelingList = new ArrayList<String>();
-        for (Feeling feel : feels){
+
+        for (Feeling feel : feelingList){
             if (feel.getComment()==null){
                 stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
             } else {
@@ -155,24 +145,6 @@ public class ModifyFeeling extends AppCompatActivity {
         final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
         listView.setAdapter(feelsAdapter);
 
-        // Abram Hindle, https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O, 2018-09-27
-        FeelsListController.getFeelingList().addFeelsListener(new FeelsListener() {
-            @Override
-            public void updateListener() {
-                feelingList.clear();
-                stringFeelingList.clear();
-                Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings();
-                feelingList.addAll(feels);
-                for (Feeling feel : feels) {
-                    if (feel.getComment() == null) {
-                        stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
-                    } else {
-                        stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
-                    }
-                }
-                feelsAdapter.notifyDataSetChanged();
-            }
-        });
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
@@ -210,9 +182,43 @@ public class ModifyFeeling extends AppCompatActivity {
 
     public void clearList(View view){
         Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
-        FeelsListController flc = new FeelsListController();
-        flc.clearList();
+        feelingList.clear();
         stringFeelingList.clear();
-        FeelsListController.getFeelingList().notifyListeners();
+        saveToFile();
+    }
+
+    //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
+
+    private void loadFromFile(){
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader input = new BufferedReader(new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Feeling>>(){}.getType();
+
+            feelingList = gson.fromJson(input, listType);
+
+        } catch (FileNotFoundException fileNotFound){
+            feelingList = new ArrayList<Feeling>();
+        }
+    }
+
+    private void saveToFile(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+            BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(feelingList,output);
+            output.flush();
+            fos.close();
+
+        } catch (FileNotFoundException fileNotFound){
+            fileNotFound.printStackTrace();
+        } catch (IOException ioError){
+            ioError.printStackTrace();
+        }
     }
 }
