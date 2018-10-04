@@ -20,7 +20,7 @@ public class CountFeelings extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_feelings);
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        Collection<Feeling> feels = FeelsListController.getFeelingList(this).getFeelings(); //gets list of feelings
         ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
 
         /* string comparison with equals(): https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/513839#513839
@@ -77,7 +77,7 @@ public class CountFeelings extends AppCompatActivity {
         super.onRestart();
         setContentView(R.layout.activity_count_feelings);
 
-        Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        Collection<Feeling> feels = FeelsListController.getFeelingList(this).getFeelings(); //gets list of feelings
         ArrayList<Feeling> feelingList = new ArrayList<Feeling>(feels);
 
         /* string comparison with equals(): https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/513839#513839
