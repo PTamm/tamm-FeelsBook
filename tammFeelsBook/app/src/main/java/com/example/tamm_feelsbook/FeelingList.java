@@ -21,6 +21,10 @@ public class FeelingList {
         notifyListeners();
     }
 
+    public void setFeelingList(ArrayList<Feeling> feelsList){
+        feelingList = feelsList;
+    }
+
     public void deleteFeeling(Feeling feel){
         feelingList.remove(feel);
         notifyListeners();

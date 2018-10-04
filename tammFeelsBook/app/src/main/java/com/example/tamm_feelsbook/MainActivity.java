@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final String FILENAME = "savedFeels.sav";
     ArrayList<Feeling> feelingList;
+    Collection<Feeling> feels;
 
 
     @Override
@@ -88,8 +89,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
-        final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        //feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        loadFromFile();
         feelingList = new ArrayList<Feeling>(feels);
+        FeelsListController.setFeelingList(feelingList);
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
         for (Feeling feel : feels){
             if (feel.getComment() == null) {
@@ -137,8 +140,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.feelsList);
-        final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        //final Collection<Feeling> feels = FeelsListController.getFeelingList().getFeelings(); //gets list of feelings
+        loadFromFile();
         feelingList = new ArrayList<Feeling>(feels);
+        FeelsListController.setFeelingList(feelingList);
         final ArrayList<String> stringFeelingList = new ArrayList<String>();
         for (Feeling feel : feels){
             if (feel.getComment() == null) {
@@ -258,10 +263,10 @@ public class MainActivity extends AppCompatActivity {
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<Feeling>>(){}.getType();
 
-            feelingList = gson.fromJson(input, listType);
+            feels = gson.fromJson(input, listType);
 
         } catch (FileNotFoundException fileNotFound){
-            feelingList = new ArrayList<Feeling>();
+            feels = FeelsListController.getFeelingList().getFeelings();
         }
     }
 
