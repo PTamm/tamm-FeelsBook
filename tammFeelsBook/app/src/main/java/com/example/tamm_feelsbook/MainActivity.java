@@ -43,6 +43,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     * Date: 2018-09-28*/
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static final String FILENAME = "savedFeels.sav";
+    private static final String FILENAME = "sample.sav";
     ArrayList<Feeling> feelingList;
     ArrayAdapter<Feeling> feelsAdapter;
     private ListView listView;
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
 
-
+        feelsAdapter.notifyDataSetChanged();
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
         // 2018-09-26
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader input = new BufferedReader(new InputStreamReader(fis));
 
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new GsonDES()).create();
             Type listType = new TypeToken<ArrayList<Feeling>>(){}.getType();
 
             feelingList = gson.fromJson(input, listType);
@@ -213,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
             BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
 
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new GsonDES()).create();
             gson.toJson(feelingList,output);
             output.flush();
             fos.close();

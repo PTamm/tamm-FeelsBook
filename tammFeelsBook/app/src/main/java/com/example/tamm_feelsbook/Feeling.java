@@ -43,6 +43,26 @@ public class Feeling {
         this.comment = text;
     }
 
+    public String getFeeling() {
+        return feeling;
+    }
+
+    public void setFeeling(String feeling) {
+        this.feeling = feeling;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public SimpleDateFormat getSdf() {
+        return sdf;
+    }
+
+    public void setSdf(SimpleDateFormat sdf) {
+        this.sdf = sdf;
+    }
+
     public String getComment(){
         return this.comment;
     }
