@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     * Date: 2018-09-28*/
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static final String FILENAME = "feelFile.sav";
+    private static final String FILENAME = "saveFile.sav";
     ArrayList<Feeling> feelingList;
     ArrayAdapter<Feeling> feelsAdapter;
     private ListView feelsList;
@@ -181,17 +181,17 @@ public class MainActivity extends AppCompatActivity {
         feelsAdapter.notifyDataSetChanged();
     }
 
-//    public void modifyFeeling(View view) {
-//        Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
-//        Intent additionalIntent = new Intent(MainActivity.this, ModifyFeeling.class);
-//        startActivity(additionalIntent);
-//    }
-//
-//    public void viewCount(View view) {
-//        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
-//        Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
-//        startActivity(countIntent);
-//    }
+    public void modifyFeeling(View view) {
+        Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
+        Intent additionalIntent = new Intent(MainActivity.this, ModifyFeeling.class);
+        startActivity(additionalIntent);
+    }
+
+    public void viewCount(View view) {
+        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
+        Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
+        startActivity(countIntent);
+    }
 
     //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
 
