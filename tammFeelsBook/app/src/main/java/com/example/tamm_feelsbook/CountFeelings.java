@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 public class CountFeelings extends AppCompatActivity {
 
-    int loveCount = 0;
-    int joyCount = 0;
-    int surpriseCount = 0;
-    int angerCount = 0;
-    int sadnessCount = 0;
-    int fearCount = 0;
+    private int loveCount = 0;
+    private int joyCount = 0;
+    private int surpriseCount = 0;
+    private int angerCount = 0;
+    private int sadnessCount = 0;
+    private int fearCount = 0;
 
 
     private static final String FILENAME = "saveFile.sav";

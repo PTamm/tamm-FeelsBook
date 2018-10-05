@@ -1,13 +1,4 @@
-#Fri Oct 05 00:27:09 MDT 2018
-path.3=classes.dex
-path.2=classes.dex
-path.1=classes.dex
+#Fri Oct 05 13:47:23 MDT 2018
+base.0=C\:\\Users\\Patrick\\Desktop\\tamm-FeelsBook\\tammFeelsBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\152
 path.0=classes.dex
-renamed.3=classes4.dex
-renamed.2=classes3.dex
-renamed.1=classes2.dex
 renamed.0=classes.dex
-base.3=C\:\\Users\\Patrick\\Desktop\\tamm-FeelsBook\\tammFeelsBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\148
-base.2=C\:\\Users\\Patrick\\Desktop\\tamm-FeelsBook\\tammFeelsBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\150
-base.1=C\:\\Users\\Patrick\\Desktop\\tamm-FeelsBook\\tammFeelsBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\147
-base.0=C\:\\Users\\Patrick\\Desktop\\tamm-FeelsBook\\tammFeelsBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\149
