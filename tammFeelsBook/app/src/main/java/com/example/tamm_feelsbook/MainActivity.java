@@ -81,25 +81,15 @@ public class MainActivity extends AppCompatActivity {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final String FILENAME = "savedFeels.sav";
     ArrayList<Feeling> feelingList;
-
+    ArrayAdapter<Feeling> feelsAdapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.feelsList);
-        loadFromFile();
-        final ArrayList<String> stringFeelingList = new ArrayList<String>();
-        for (Feeling feel : feelingList){
-            if (feel.getComment() == null) {
-                stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
-            } else {
-                stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
-            }
-        }
-        final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
-        listView.setAdapter(feelsAdapter);
 
+        listView = (ListView) findViewById(R.id.feelsList);
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
@@ -114,21 +104,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart(){
-        super.onRestart();
+    protected void onStart(){
+        super.onStart();
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.feelsList);
         loadFromFile();
-        final ArrayList<String> stringFeelingList = new ArrayList<String>();
-        for (Feeling feel : feelingList){
-            if (feel.getComment() == null) {
-                stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
-            } else {
-                stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
-            }
-        }
-        final ArrayAdapter<String> feelsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFeelingList);
-        listView.setAdapter(feelsAdapter);
+
+        feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
 
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
@@ -194,19 +175,20 @@ public class MainActivity extends AppCompatActivity {
                 saveToFile();
                 break;
         }
+        feelsAdapter.notifyDataSetChanged();
     }
 
-    public void modifyFeeling(View view) {
-        Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
-        Intent additionalIntent = new Intent(MainActivity.this, ModifyFeeling.class);
-        startActivity(additionalIntent);
-    }
-
-    public void viewCount(View view) {
-        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
-        Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
-        startActivity(countIntent);
-    }
+//    public void modifyFeeling(View view) {
+//        Toast.makeText(this, "Modify Feeling", Toast.LENGTH_SHORT).show();
+//        Intent additionalIntent = new Intent(MainActivity.this, ModifyFeeling.class);
+//        startActivity(additionalIntent);
+//    }
+//
+//    public void viewCount(View view) {
+//        Toast.makeText(this, "View Feeling Count", Toast.LENGTH_SHORT).show();
+//        Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
+//        startActivity(countIntent);
+//    }
 
     //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
 
