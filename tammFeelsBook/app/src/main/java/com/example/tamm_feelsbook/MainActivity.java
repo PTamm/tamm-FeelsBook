@@ -80,22 +80,22 @@ public class MainActivity extends AppCompatActivity {
     * Date: 2018-09-28*/
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static final String FILENAME = "sample.sav";
+    private static final String FILENAME = "feelFile.sav";
     ArrayList<Feeling> feelingList;
     ArrayAdapter<Feeling> feelsAdapter;
-    private ListView listView;
+    private ListView feelsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.feelsList);
+        feelsList = (ListView) findViewById(R.id.feelsList);
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
         // 2018-09-26
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        feelsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, "Feeling: "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
@@ -107,17 +107,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        setContentView(R.layout.activity_main);
         loadFromFile();
 
-        feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
-        listView.setAdapter(feelsAdapter);
+        feelsAdapter = new ArrayAdapter<Feeling>(this, R.layout.list_item, feelingList);
+        feelsList.setAdapter(feelsAdapter);
 
        // feelsAdapter.notifyDataSetChanged();
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
         // 2018-09-26
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        feelsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, "Feeling: "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
