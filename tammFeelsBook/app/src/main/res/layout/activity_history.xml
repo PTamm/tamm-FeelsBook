@@ -4,69 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyFeeling">
+    tools:context=".FeelingHistory">
 
     <ListView
-        android:id="@+id/modifyFeelsList"
+        android:id="@+id/historyList"
         android:layout_width="0dp"
-        android:layout_height="298dp"
+        android:layout_height="356dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyComment" />
-
-    <!-- Using plain text widget to get user input:
-    https://developer.android.com/training/basics/firstapp/building-ui
-    2018-09-29-->
-    <EditText
-        android:id="@+id/modifyComment"
-        android:layout_width="0dp"
-        android:layout_height="104dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/optional_feel_text"
-        android:inputType="textPersonName"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/viewHistory"
+        android:id="@+id/toViewCount"
         android:layout_width="0dp"
-        android:layout_height="36dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:onClick="feelingHistory"
-        android:text="@string/button_view_history"
+        android:onClick="viewCount"
+        android:text="@string/button_to_view_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toModifyFeeling" />
+
+    <Button
+        android:id="@+id/toModifyFeeling"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="modifyFeeling"
+        android:text="@string/button_to_modify_feeling"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backToMain" />
+
+    <Button
+        android:id="@+id/backToMain"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="backToMain"
+        android:text="@string/button_back_to_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clearListButton" />
-
-    <Button
-        android:id="@+id/clearListButton"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:onClick="clearList"
-        android:text="@string/button_clear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifyFeelsList" />
+        app:layout_constraintTop_toBottomOf="@+id/historyList" />
 </android.support.constraint.ConstraintLayout>

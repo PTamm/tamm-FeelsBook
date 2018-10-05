@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ModifyFeeling" />
-        <activity android:name=".CountFeelings"></activity>
+        <activity android:name=".CountFeelings" />
+        <activity android:name=".FeelingHistory"></activity>
     </application>
 
 </manifest>

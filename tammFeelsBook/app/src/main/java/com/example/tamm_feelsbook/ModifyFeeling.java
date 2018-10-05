@@ -86,7 +86,8 @@ public class ModifyFeeling extends AppCompatActivity {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final String FILENAME = "saveFile.sav";
     ArrayList<Feeling> feelingList;
-    ArrayAdapter<Feeling> feelsAdapter;
+    ArrayList<String>stringFeelingList;
+    ArrayAdapter<String> feelsAdapter;
     private ListView modifyFeelsList;
 
     @Override
@@ -103,7 +104,17 @@ public class ModifyFeeling extends AppCompatActivity {
         super.onStart();
         loadFromFile();
 
-        feelsAdapter = new ArrayAdapter<Feeling>(this, R.layout.list_item, feelingList);
+        stringFeelingList = new ArrayList<String>();
+
+        for (Feeling feel : feelingList){
+            if (feel.getComment() == null) {
+                stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+            } else {
+                stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
+            }
+        }
+
+        feelsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, stringFeelingList);
         modifyFeelsList.setAdapter(feelsAdapter);
 
         // feelsAdapter.notifyDataSetChanged();
@@ -153,6 +164,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully added '"+comment+"' to "+feel.getFeel(),
                                     Toast.LENGTH_LONG).show();
+                            feelsAdapter.notifyDataSetChanged();
                         } else if (which == 1){ //Change Feeling ...
                             Feeling feel = feelingList.get(pos);
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
@@ -163,6 +175,7 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully changed "+oldFeel+" to "+newFeel,
                                     Toast.LENGTH_LONG).show();
+                            feelsAdapter.notifyDataSetChanged();
                         } else if (which == 2){ //Change Date ...
                             Feeling feel = feelingList.get(pos);
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
@@ -177,9 +190,13 @@ public class ModifyFeeling extends AppCompatActivity {
                             Toast.makeText(ModifyFeeling.this,
                                     "Changing date to "+newDate,
                                     Toast.LENGTH_LONG).show();
+                            feelsAdapter.notifyDataSetChanged();
                         } else if (which == 3) { //Delete this feeling ...
                             Toast.makeText(ModifyFeeling.this, "You are deleting "+feelingList.get(pos).toString(), Toast.LENGTH_SHORT).show();
                             Feeling feel = feelingList.get(pos);
+                            feelingList.remove(pos);
+                            stringFeelingList.remove(pos);
+                            feelsAdapter.notifyDataSetChanged();
                         } else { //Last item clicked; cancel ...
                             Toast.makeText(ModifyFeeling.this,
                                     "Cancel",
@@ -204,9 +221,17 @@ public class ModifyFeeling extends AppCompatActivity {
     public void clearList(View view){
         Toast.makeText(this, "Clearing Feeling List",Toast.LENGTH_SHORT).show();
         feelingList.clear();
+        stringFeelingList.clear();
         saveToFile();
         feelsAdapter.notifyDataSetChanged();
     }
+
+    public void feelingHistory(View view) {
+        Toast.makeText(this, "View Feeling History", Toast.LENGTH_SHORT).show();
+        Intent additionalIntent = new Intent(ModifyFeeling.this, FeelingHistory.class);
+        startActivity(additionalIntent);
+    }
+
 
     //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
 

@@ -82,49 +82,60 @@ public class MainActivity extends AppCompatActivity {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final String FILENAME = "saveFile.sav";
     ArrayList<Feeling> feelingList;
-    ArrayAdapter<Feeling> feelsAdapter;
-    private ListView feelsList;
+    //ArrayList<String> stringFeelingList;
+    //ArrayAdapter<String> feelsAdapter;
+    //private ListView feelsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        feelsList = (ListView) findViewById(R.id.feelsList);
+        //feelsList = (ListView) findViewById(R.id.feelsList);
 
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
         // 2018-09-26
-        feelsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Feeling: "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+        //feelsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        //    @Override
+      //      public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+          //      Toast.makeText(MainActivity.this, "Feeling: "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
+            //    return false;
+            //}
+        //});
     }
 
     @Override
     protected void onStart(){
         super.onStart();
         loadFromFile();
+        //stringFeelingList = new ArrayList<String>();
 
-        feelsAdapter = new ArrayAdapter<Feeling>(this, R.layout.list_item, feelingList);
-        feelsList.setAdapter(feelsAdapter);
+
+        //for (Feeling feel : feelingList){
+          //  if (feel.getComment() == null) {
+            //    stringFeelingList.add(feel.getFeel()+"\n"+sdf.format(feel.getDate()));
+            //} else {
+            //    stringFeelingList.add(feel.getFeel()+"\n"+feel.getComment()+"\n"+sdf.format(feel.getDate()));
+           // }
+        //}
+
+        //feelsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, stringFeelingList);
+        //feelsList.setAdapter(feelsAdapter);
 
        // feelsAdapter.notifyDataSetChanged();
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
         // 2018-09-26
-        feelsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Feeling: "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+        //feelsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+          //  @Override
+            //public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+              //  Toast.makeText(MainActivity.this, "Feeling: "+feelingList.get(position).toString(), Toast.LENGTH_SHORT).show();
+                //return false;
+            //}
+        //});
 
-        feelsAdapter.notifyDataSetChanged();
+        //feelsAdapter.notifyDataSetChanged();
 
     }
 
@@ -178,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 saveToFile();
                 break;
         }
-        feelsAdapter.notifyDataSetChanged();
+        //feelsAdapter.notifyDataSetChanged();
     }
 
     public void modifyFeeling(View view) {
@@ -192,6 +203,13 @@ public class MainActivity extends AppCompatActivity {
         Intent countIntent = new Intent(MainActivity.this, CountFeelings.class);
         startActivity(countIntent);
     }
+
+    public void feelingHistory(View view) {
+        Toast.makeText(this, "View Feeling History", Toast.LENGTH_SHORT).show();
+        Intent additionalIntent = new Intent(MainActivity.this, FeelingHistory.class);
+        startActivity(additionalIntent);
+    }
+
 
     //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
 

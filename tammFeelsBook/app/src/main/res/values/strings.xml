@@ -21,4 +21,8 @@
     <string name="fear_count_text">Fear count ...</string>
     <string name="button_additional_options">Additional Options</string>
     <string name="button_edit_feeling">Modify Feeling</string>
+    <string name="button_back_to_main">Main Activity</string>
+    <string name="button_to_modify_feeling">Modify Feeling</string>
+    <string name="button_to_view_count">View Counts</string>
+    <string name="button_view_history">Feeling History</string>
 </resources>
