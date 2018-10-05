@@ -38,6 +38,40 @@ https://stackoverflow.com/questions/3469507/how-can-i-change-the-date-format-in-
 User: https://stackoverflow.com/users/27583/christopher-parker,and	       	 https://stackoverflow.com/users/401667/molske
 Date: 2018-09-28
 
-https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+10. SimpleDateFormat, https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html, Date: 2018-09-28
+
+11. Had trouble with format string displaying minutes for the month. How to properly type format string:
+ https://stackoverflow.com/questions/1459656/how-to-get-the-current-time-in-yyyy-mm-dd-hhmisec-millisecond-format-in-java
+Users: https://stackoverflow.com/users/111988/sunil-kumar-sahoo,and
+        https://stackoverflow.com/users/9282270/yassadi, and
+        https://stackoverflow.com/users/171675/jayjay
 Date: 2018-09-28
+
+12. Idea to use setItems(): https://developer.android.com/reference/android/app/AlertDialog.Builder#setItems(int, android.content.DialogInterface.OnClickListener), 2018-09-30
+
+13. How to implement setItems():
+User: https://stackoverflow.com/users/1706269/mark
+Source: https://stackoverflow.com/questions/14480788/alertdialog-builder-setitems-list-with-another
+Date: 2018-09-30
+
+14. Getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
+
+15. String comparison with equals(): https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/513839#513839
+Users: https://stackoverflow.com/users/2603/aaron-maenpaa (original poster), and others
+      https://stackoverflow.com/posts/513839/revisions (community wiki)
+Date: 2018-09-27
+
+16. Idea to use one function to handle all button clicks came from android developer guide.
+Site: https://developer.android.com/guide/topics/ui/controls/radiobutton#java
+Date: 2018-09-22
+
+17. Using GsonDES class to solve Gson issues with SimpleDateFormat
+https://stackoverflow.com/questions/22831578/gson-is-crashing-with-failed-to-invoke-protected-java-text-numberformat-with-n
+Users: https://stackoverflow.com/users/2523667/nicolas
+Date: 2018-10-04
+
+18. Abdul Ali Bangash assisted with solving the Gson issues and with loading to List View, 2018-10-04.
+
+19. Abram Hindle, Objects, UML, and Java, Lecture notes for CMPUT 301, Fall 2018.
+
 
