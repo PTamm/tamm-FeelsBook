@@ -1,0 +1,4 @@
+#Fri Oct 05 13:09:52 MDT 2018
+base.0=C\:\\Users\\Patrick\\Desktop\\tamm-FeelsBook\\tammFeelsBook\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\141
+path.0=classes.dex
+renamed.0=classes.dex

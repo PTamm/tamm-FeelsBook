@@ -160,7 +160,11 @@ public class ModifyFeeling extends AppCompatActivity {
                             //getting user input, https://developer.android.com/training/basics/firstapp/starting-activity#java, 2018-09-29
                             EditText editText = (EditText) findViewById(R.id.modifyComment);
                             String comment = editText.getText().toString();
-                            feel.setComment(comment);
+                            try {
+                                feel.setComment(comment);
+                            } catch (CommentTooLongException e){
+                                Toast.makeText(ModifyFeeling.this, "Comment too long: 100 characters max", Toast.LENGTH_SHORT).show();
+                            }
                             Toast.makeText(ModifyFeeling.this,
                                     "Successfully added '"+comment+"' to "+feel.getFeel(),
                                     Toast.LENGTH_LONG).show();

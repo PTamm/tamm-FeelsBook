@@ -31,7 +31,7 @@ public class Feeling {
         return this.date;
     }
 
-    public void setFeel(String newFeel){
+    public void setFeel(String newFeel) {
         this.feeling = newFeel;
     }
 
@@ -39,8 +39,13 @@ public class Feeling {
         this.date = sdf.parse(newDateString);
     }
 
-    public void setComment(String text){
-        this.comment = text;
+    //Exceptions, lonelyTwitter, Joshua Campbell
+    public void setComment(String text) throws CommentTooLongException{
+        if (text.length() <= 100) {
+            this.comment = text;
+        } else{
+            throw new CommentTooLongException();
+        }
     }
 
 
