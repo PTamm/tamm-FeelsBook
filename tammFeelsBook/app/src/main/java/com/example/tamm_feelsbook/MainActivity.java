@@ -111,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
         loadFromFile();
 
         feelsAdapter = new ArrayAdapter<Feeling>(this, android.R.layout.simple_list_item_1, feelingList);
+        listView.setAdapter(feelsAdapter);
 
-        feelsAdapter.notifyDataSetChanged();
+       // feelsAdapter.notifyDataSetChanged();
         // This came from Abram Hindle's 'Student Picker for Android: 6 ListView, ArrayAdapter and Observer Pattern' video
         // https://www.youtube.com/watch?v=7zKCuqScaRE&index=6&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O
         // 2018-09-26
@@ -123,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        feelsAdapter.notifyDataSetChanged();
 
     }
 
