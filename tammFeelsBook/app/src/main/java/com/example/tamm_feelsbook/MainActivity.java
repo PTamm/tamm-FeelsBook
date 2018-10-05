@@ -169,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
     //Using Gson and file input/output came from lonelyTwitter, Joshua Campbell (2015-09-14), Abdul Ali Bangash, 2018-10-02
     //Abdul Ali Bangash assisted with Gson errors caused by SimpleDateFormat, 2018-10-04
 
+    /* Using GsonDES class to solve Gson issues with SimpleDateFormat
+    https://stackoverflow.com/questions/22831578/gson-is-crashing-with-failed-to-invoke-protected-java-text-numberformat-with-n
+    Users: https://stackoverflow.com/users/2523667/nicolas
+    Date: 2018-10-04
+    */
+    
     private void loadFromFile(){
         try {
             FileInputStream fis = openFileInput(FILENAME);
